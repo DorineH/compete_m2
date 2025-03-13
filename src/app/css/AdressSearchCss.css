@@ -1,0 +1,137 @@
+/* Styles pour l'écran de recherche d'adresse */
+.address-search-container {
+    width: 100%;
+    height: 100vh;
+    background-color: #f8f6fb;
+    display: flex;
+    flex-direction: column;
+    padding: 16px;
+    max-width: 450px;
+    margin: 0 auto;
+  }
+  
+  .address-search-header {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    padding-bottom: 16px;
+  }
+  
+  .back-button {
+    color: #333 !important;
+    margin-right: 16px !important;
+  }
+  
+  .progress-container {
+    display: flex;
+    align-items: center;
+    flex: 1;
+  }
+  
+  .progress-bar {
+    flex: 1;
+    height: 8px;
+    background-color: #e0e0e0;
+    border-radius: 4px;
+    margin-right: 16px;
+    overflow: hidden;
+    position: relative;
+  }
+  
+  .progress-filled {
+    width: 20%; /* 1/5 */
+    height: 100%;
+    background-color: #5f45e9;
+    border-radius: 4px;
+  }
+  
+  .progress-text {
+    font-size: 14px;
+    color: #555;
+  }
+  
+  .public-toggle {
+    display: flex;
+    align-items: center;
+    margin-bottom: 16px;
+  }
+  
+  .search-title {
+    font-weight: 600 !important;
+    margin-bottom: 16px !important;
+    color: #333;
+  }
+  
+  .search-input {
+    margin-bottom: 16px !important;
+    background-color: #efe7ff !important;
+    border-radius: 24px !important;
+  }
+  
+  .search-input .MuiOutlinedInput-root {
+    border-radius: 24px;
+  }
+  
+  .search-input .MuiOutlinedInput-notchedOutline {
+    border: none;
+  }
+  
+  .search-icon {
+    color: #5f45e9;
+  }
+  
+  .map-icon {
+    color: #5f45e9;
+  }
+  
+  .quick-actions {
+    display: flex;
+    gap: 12px;
+    margin-bottom: 16px;
+  }
+  
+  .action-button {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background-color: #fff;
+    border-radius: 24px;
+    padding: 8px 16px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  }
+  
+  .current-location {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 16px;
+    cursor: pointer;
+  }
+  
+  .current-location svg {
+    color: #5f45e9;
+  }
+  
+  .locations-list {
+    background-color: #fff;
+    border-radius: 12px;
+    overflow: hidden;
+    padding: 0 !important;
+  }
+  
+  .location-item {
+    border-bottom: 1px solid #f0f0f0;
+    padding: 12px 16px !important;
+  }
+  
+  .location-item .MuiListItemIcon-root {
+    min-width: 40px;
+  }
+  
+  .location-item svg {
+    color: #333;
+  }
+  
+  .more-options {
+    color: #999 !important;
+  }

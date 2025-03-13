@@ -1,0 +1,24 @@
+{
+    "name": "Decathlon Walk Up",
+    "short_name": "WalkUp",
+    "description": "Une application Decathlon dédiée à commencer le sport.",
+    "lang": "fr",
+    "start_url": "/",
+    "display": "standalone",
+    "background_color": "#ffffff",
+    "theme_color": "#0070f3",
+    "orientation": "portrait",
+    "icons": [
+      {
+        "src": "/icons/decathlon_logo_192.png",
+        "sizes": "192x192",
+        "type": "image/png"
+      },
+      {
+        "src": "/icons/decathlon_logo_512.png",
+        "sizes": "512x512",
+        "type": "image/png"
+      }
+    ]
+  }
+  

@@ -1,0 +1,65 @@
+{
+    "lieux": [
+      {
+        "name": "Musée du Louvre",
+        "adresse": "Rue de Rivoli, 75001 Paris, France"
+      },
+      {
+        "name": "Tour Eiffel",
+        "adresse": "Champ de Mars, 5 Av. Anatole France, 75007 Paris, France"
+      },
+      {
+        "name": "Cathédrale Notre-Dame de Paris",
+        "adresse": "6 Parvis Notre-Dame - Pl. Jean-Paul II, 75004 Paris, France"
+      },
+      {
+        "name": "Arc de Triomphe",
+        "adresse": "Pl. Charles de Gaulle, 75008 Paris, France"
+      },
+      {
+        "name": "Mont Saint-Michel",
+        "adresse": "50170 Le Mont-Saint-Michel, France"
+      },
+      {
+        "name": "Palais des Papes",
+        "adresse": "Pl. du Palais, 84000 Avignon, France"
+      },
+      {
+        "name": "Château de Versailles",
+        "adresse": "Place d'Armes, 78000 Versailles, France"
+      },
+      {
+        "name": "Pont du Gard",
+        "adresse": "30210 Vers-Pont-du-Gard, France"
+      },
+      {
+        "name": "Basilique du Sacré-Cœur",
+        "adresse": "35 Rue du Chevalier de la Barre, 75018 Paris, France"
+      },
+      {
+        "name": "Place Stanislas",
+        "adresse": "54000 Nancy, France"
+      },
+      {
+        "name": "La Cité de Carcassonne",
+        "adresse": "11000 Carcassonne, France"
+      },
+      {
+        "name": "Dune du Pilat",
+        "adresse": "Route de Biscarrosse, 33115 La Teste-de-Buch, France"
+      },
+      {
+        "name": "Les Gorges du Verdon",
+        "adresse": "04360 Moustiers-Sainte-Marie, France"
+      },
+      {
+        "name": "Cathédrale de Strasbourg",
+        "adresse": "Pl. de la Cathédrale, 67000 Strasbourg, France"
+      },
+      {
+        "name": "Château de Chambord",
+        "adresse": "41250 Chambord, France"
+      }
+    ]
+  }
+  

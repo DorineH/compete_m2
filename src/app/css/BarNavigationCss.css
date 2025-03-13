@@ -1,0 +1,78 @@
+/* .MuiBottomNavigation-root { 
+    width: 100%;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    background-color: #2A3592 !important;
+    box-shadow: 0 -2px 5px rgba(0,0,0,0.1);
+    border-radius: 16px 16px 0 0;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    padding: 10px 0;
+}
+
+.iconColor {
+    color: #C0C4ED;
+} */
+
+/* .css-16kaq0q-MuiButtonBase-root-MuiBottomNavigationAction-root.Mui-selected {
+    color: #D6F379;
+} */
+
+.fab-button {
+    top: -20px; 
+    background-color: #D6F379;
+    color: #2A3592 !important;
+    fill: #C0C4ED;
+    border-radius: 50%;
+    width: 60px;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.2);
+    border: 4px solid #2A3592;
+}
+
+.bottom-navigation {
+    display: flex;
+    justify-content: space-around;
+    background-color: #2A3592;
+    padding: 10px 0;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1);
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+}
+
+.nav-icon {
+    color: #D6F379;
+    font-size: 24px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.nav-icon svg {
+    font-size: 28px;
+}
+
+.main-nav-icon {
+    background-color: #D6F379;
+    color: #2A3592;
+    border-radius: 50%;
+    padding: 10px;
+    font-size: 28px;
+    position: relative;
+    top: -20px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    width: 60px;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 4px solid #2A3592;
+}

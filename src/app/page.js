@@ -1,103 +1,78 @@
-import Image from "next/image";
+'use client'
+import * as React from 'react';
 
-export default function Home() {
+import { useRouter } from 'next/navigation';
+
+import BarNavigation from "./components/BarNavigation";
+import { Grid2, Button, Typography, IconButton } from "@mui/material";
+import { HomeRounded, LocationOn, StarsRounded, Close } from '@mui/icons-material';
+
+import "./css/BarNavigationCss.css";
+import "./css/HomePageCss.css";
+
+export default function HomePage() {
+  const router = useRouter(); 
+
+  const handleClick = () => {
+    router.push('/AddRidePage'); 
+  };
+
   return (
-    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-      <main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="list-inside list-decimal text-sm/6 text-center sm:text-left font-[family-name:var(--font-geist-mono)]">
-          <li className="mb-2 tracking-[-.01em]">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] px-1 py-0.5 rounded font-[family-name:var(--font-geist-mono)] font-semibold">
-              src/app/page.js
-            </code>
-            .
-          </li>
-          <li className="tracking-[-.01em]">
-            Save and see your changes instantly.
-          </li>
-        </ol>
+    <div className="custom-container">
+      <div className="home-page">
+            <Grid2 className="header">
+                <Typography variant="h6">Bonjour Camille,</Typography>
+                <Typography variant="subtitle1">Prêt à prendre l&apos;air ?</Typography>
+            </Grid2>
 
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:w-auto"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 w-full sm:w-auto md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
+            <Grid2 className="main-content">
+                <Grid2 
+                  variant="contained" 
+                  className="main-button"
+                  onClick={() => handleClick()}
+                  >
+                    {/* <CalendarToday className="button-icon" /> */}
+                    <LocationOn sx={{marginRight:'10px'}}/>
+                    Où allez-vous ?
+                </Grid2>
+                <Grid2 className="secondary-buttons">
+                    <Button variant="outlined" className="secondary-button" startIcon={<HomeRounded />}>Revenir à la maison</Button>
+                    <Button variant="outlined" className="secondary-button" startIcon={<StarsRounded />}>Trajets favoris</Button>
+                </Grid2>
+                <Grid2 className="calendar">
+                    {/* <Typography variant="body1">18 Lu</Typography>
+                    <Typography variant="body1">19 Ma</Typography>
+                    <Typography variant="body1">20 Me</Typography>
+                    <Typography variant="body1" className="selected-date">21 Je</Typography>
+                    <Typography variant="body1">22 Ve</Typography>
+                    <Typography variant="body1">23 Sa</Typography>
+                    <Typography variant="body1">24 Di</Typography> */}
+
+                {[
+                  { num: 18, day: 'Lu' },
+                  { num: 19, day: 'Ma' },
+                  { num: 20, day: 'Me' },
+                  { num: 21, day: 'Je', selected: true },
+                  { num: 22, day: 'Ve' },
+                  { num: 23, day: 'Sa' },
+                  { num: 24, day: 'Di' }
+                ].map((item) => (
+                  <div key={item.num} className={`calendar-day ${item.selected ? 'selected-date' : ''}`}>
+                    <div className="day-number">{item.num}</div>
+                    <div className="day-name">{item.day}</div>
+                  </div>
+                ))}
+                </Grid2>
+                <Grid2 className="scheduled-rides">
+                    <Typography variant="body2">Mes courses programmées</Typography>
+                    <Grid2 className="no-rides">
+                        <Typography variant="body2">Aucune course prévue aujourd&apos;hui.</Typography>
+                        <Typography variant="body2">Vous trouverez ici l&apos;ensemble des informations sur vos trajets.</Typography>
+                    </Grid2>
+                </Grid2>
+            </Grid2>
         </div>
-      </main>
-      <footer className="row-start-3 flex gap-[24px] flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
+        <BarNavigation />
     </div>
   );
 }
