@@ -47,7 +47,7 @@ export default function HomePage() {
       <div className="home-page">
             <Grid2 className="header">
                 <Typography variant="h6">Bonjour Camille,</Typography>
-                <Typography variant="subtitle1">Prêt à prendre l&apos;air ?</Typography>
+                <Typography variant="subtitle1">Prête à prendre l&apos;air ?</Typography>
             </Grid2>
 
             <Grid2 className="main-content">

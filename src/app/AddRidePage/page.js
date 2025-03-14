@@ -18,7 +18,6 @@ import ArrowBackIosNewIcon from '@mui/icons-material/ArrowBackIosNew';
 
 import dayjs from "dayjs";
 
-
 export default function AddRidePage() {    
     const [date, setDate] = React.useState(dayjs());
     const [time, setTime] = React.useState(dayjs());

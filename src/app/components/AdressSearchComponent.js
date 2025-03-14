@@ -22,7 +22,8 @@ import MapIcon from '@mui/icons-material/Map';
 import CloseIcon from '@mui/icons-material/Close';
 import '../css/AdressSearchCss.css'
 import dynamic from 'next/dynamic';
-const MapComponent = dynamic(() => import("./MapComponent"), {
+
+const MapComponent = dynamic(() => import("../../../public/MapComponent"), {
     ssr: false,
   });
 
@@ -33,6 +34,13 @@ export default function AddressSearchComponent({ onBackClick, onSelectLocation, 
   const [query, setQuery] = React.useState("");
   const [loading, setLoading] = React.useState(false);
   const [showMap, setShowMap] = React.useState(false);
+  const [selectedAddress, setSelectedAddress] = React.useState('');
+
+  const handleSelectLocation = (address) => {
+    setSelectedAddress(address);
+    onSelectLocation(address); // Appeler la fonction de rappel avec l'adresse sélectionnée
+    setShowMap(false);
+  };
 
   const handlePublicToggle = () => {
     setIsPublic(!isPublic);
@@ -72,6 +80,7 @@ export default function AddressSearchComponent({ onBackClick, onSelectLocation, 
   const handleLocationSelect = (location) => {
     // Appel de la fonction passée en prop avec le lieu sélectionné
     onSelectLocation(location.properties.label);
+    setSelectedAddress(location.properties.label);
   };
 
   return (
@@ -92,7 +101,7 @@ export default function AddressSearchComponent({ onBackClick, onSelectLocation, 
             <Box className="progress-bar">
               <Box className="progress-filled"></Box>
             </Box>
-            <Typography className="progress-text">1/5</Typography>
+            <Typography className="progress-text">1/3</Typography>
           </Box>
         </Box>
 
@@ -173,7 +182,18 @@ export default function AddressSearchComponent({ onBackClick, onSelectLocation, 
           <IconButton className="close-map-button" onClick={handleCloseMap}>
             <CloseIcon />
           </IconButton>
-          <MapComponent />
+          {/* <MapComponent onSelectLocation={handleSelectLocation} /> */}
+          <div>
+            <button onClick={onBackClick}>Retour</button>
+            <h2>Recherche d&apos;adresse ({type})</h2>
+            <MapComponent onSelectLocation={handleSelectLocation} />
+            <input
+              type="text"
+              value={selectedAddress}
+              readOnly
+              placeholder="Adresse sélectionnée"
+            />
+          </div>
         </Box>
       </Modal>
     </>
