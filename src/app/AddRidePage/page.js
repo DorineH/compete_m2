@@ -4,7 +4,8 @@ import "../css/AddRideCss.css";
 import AddressSearchComponent from '../components/AdressSearchComponent';
 import ExplainMoreComponent from '../components/ExplainMoreComponent';
 import DisplayDataComponent from '../components/DisplayDataComponent'; // Import the new component
-
+import { RideContext } from '../components/RideContextSave';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import { motion } from "framer-motion";
 import { Grid2, IconButton, TextField, Typography, Box, Button } from "@mui/material";
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
@@ -27,6 +28,7 @@ export default function AddRidePage() {
     const [showArrivalSearch, setShowArrivalSearch] = React.useState(false);
     const [showExplainMore, setShowExplainMore] = React.useState(false); // Nouvel état pour afficher ExplainMoreComponent
     const [showDisplayData, setShowDisplayData] = React.useState(false); // Nouvel état pour afficher DisplayDataComponent
+    const { rideInfo, setRideInfo } = React.useContext(RideContext); // Récupération du contexte RideInfo
 
     // Fonction pour échanger les valeurs départ / arrivée
     const swapLocations = () => {
@@ -61,9 +63,45 @@ export default function AddRidePage() {
         setShowArrivalSearch(false);
     };
 
-    const handleClickSuivant = () => {
-        setShowExplainMore(true);
+    const handleClickSuivant = async () => {
+        // const rideInfo = {
+        //     date: date.format('DD/MM/YYYY'),
+        //     time: time.format('HH:mm'),
+        //     departure,
+        //     arrival
+        // };
+        const newRideInfo = {
+            ...rideInfo, // On garde les anciennes valeurs
+            date: date.format('DD/MM/YYYY'),
+            time: time.format('HH:mm'),
+            departure,
+            arrival
+        };
+
+        setRideInfo(newRideInfo); // Stockage local avant envoi API
+
+        try {
+            const response = await fetch('/api/rideInfo', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(newRideInfo)
+            });
+
+            if (response.ok) {
+                setShowExplainMore(true);
+            } else {
+                console.error('Failed to save ride info');
+            }
+        } catch (error) {
+            console.error('Error:', error);
+        }
     };
+
+    // const handleClickSuivant = () => {
+    //     setShowExplainMore(true);
+    // };
 
     const handleConfirm = () => {
         setShowExplainMore(false);
@@ -76,7 +114,6 @@ export default function AddRidePage() {
             onBackClick={handleBackFromSearch} 
             onSelectLocation={handleSelectDeparture}
             type="Départ"
-            // query={departure} 
         />;
     }
 
@@ -85,7 +122,6 @@ export default function AddRidePage() {
             onBackClick={handleBackFromSearch} 
             onSelectLocation={handleSelectArrival}
             type="Arrivée" 
-            // query={arrival} 
         />;            
     }
 
@@ -96,12 +132,6 @@ export default function AddRidePage() {
                     time={time} 
                     departure={departure} 
                     arrival={arrival} 
-                    // objectif={}
-                    // walkPreference={}
-                    // kids={}
-                    // animals={}
-                    // rythme={}
-                    // supp={}
                 />;
     }
 
@@ -116,140 +146,142 @@ export default function AddRidePage() {
     }
 
     return (
-        <motion.div
-            initial={{ y: "100vh", opacity: 0 }}
-            animate={{ y: 0, opacity: 1 }}
-            exit={{ y: "100vh", opacity: 0 }}
-            transition={{ type: "spring", stiffness: 100, damping: 15 }}
-            className="flex flex-col items-center justify-center min-h-screen"
-        >
-            {/* Header avec flèche de retour et indicateur de progression */}
-            <Box className="header">
-                <ArrowBackIosNewIcon className="back-arrow" />
-                <Box className="progress-container">
-                    <Box className="progress-bar">
-                        <Box className="progress-filled"></Box>
+        <Router>
+            <motion.div
+                initial={{ y: "100vh", opacity: 0 }}
+                animate={{ y: 0, opacity: 1 }}
+                exit={{ y: "100vh", opacity: 0 }}
+                transition={{ type: "spring", stiffness: 100, damping: 15 }}
+                className="flex flex-col items-center min-h-screen"
+            >
+                {/* Header avec flèche de retour et indicateur de progression */}
+                <Box className="header-add-ride">
+                    <ArrowBackIosNewIcon className="back-arrow" />
+                    <Box className="progress-container">
+                        <Box className="progress-bar">
+                            <Box className="progress-filled"></Box>
+                        </Box>
+                        <Typography className="progress-text">1/5</Typography>
                     </Box>
-                    <Typography className="progress-text">1/5</Typography>
                 </Box>
-            </Box>
 
-            <Grid2 className="container">
-                <h2 className="title">Où allez-vous ?</h2>
+                <Grid2 className="container">
+                    <h2 className="title">Où allez-vous ?</h2>
 
-                {/* Date et Heure */}
-                <Grid2 className="date-time-container">
-                    <Box className="date-field">
-                        <Typography className="field-label">Date de départ</Typography>
-                        <LocalizationProvider dateAdapter={AdapterDayjs}>
-                            <DatePicker
-                                className='input date-picker'
-                                value={date}
-                                onChange={(newValue) => setDate(newValue)}
-                                renderInput={(params) => (
-                                    <TextField 
-                                        {...params} 
-                                        fullWidth 
-                                        variant="outlined"
-                                        InputProps={{
-                                            ...params.InputProps,
-                                            sx: { border: 'none', outline: 'none' },
-                                            disableUnderline: true
-                                        }}
-                                    />
-                                )}
-                            />
-                        </LocalizationProvider>
-                    </Box>
-                    
-                    <Box className="time-field">
-                        <Typography className="field-label">Heure de départ</Typography>
-                        <LocalizationProvider dateAdapter={AdapterDayjs}>
-                            <TimePicker 
-                                className='input time-picker'
-                                value={time}
-                                onChange={(newValue) => setTime(newValue)}
-                                ampm={false}
-                                renderInput={(params) => (
-                                    <TextField 
-                                        {...params} 
-                                        fullWidth 
-                                        variant="outlined"
-                                        InputProps={{
-                                            ...params.InputProps,
-                                            sx: { border: 'none', outline: 'none' },
-                                            disableUnderline: true
-                                        }}
-                                    />
-                                )}
-                            />
-                        </LocalizationProvider>
-                    </Box>
-                </Grid2>
-            
-                {/* Départ & Arrivée */}
-                <Grid2 className="location-container">
-                    {/* Départ */}
-                    <Grid2 className="location-field">
-                        <Typography className="field-label">Départ</Typography>
-                        <div 
-                            className="location-input-wrapper"
-                            onClick={handleDepartureClick}
-                        >
-                            <PlaceIcon className='location-icon' />
-                            <TextField 
-                                className="location-input" 
-                                variant="standard" 
-                                fullWidth
-                                value={departure}
-                                placeholder="Choisissez votre lieu de départ"
-                                onChange={(e) => setDeparture(e.target.value)}
-                                InputProps={{
-                                    disableUnderline: true,
-                                    readOnly: true
-                                }}
-                            />
-                        </div>
+                    {/* Date et Heure */}
+                    <Grid2 className="date-time-container">
+                        <Box className="date-field">
+                            <Typography className="field-label">Date de départ</Typography>
+                            <LocalizationProvider dateAdapter={AdapterDayjs}>
+                                <DatePicker
+                                    className='input date-picker'
+                                    value={date}
+                                    onChange={(newValue) => setDate(newValue)}
+                                    renderInput={(params) => (
+                                        <TextField 
+                                            {...params} 
+                                            fullWidth 
+                                            variant="outlined"
+                                            InputProps={{
+                                                ...params.InputProps,
+                                                sx: { border: 'none', outline: 'none' },
+                                                disableUnderline: true
+                                            }}
+                                        />
+                                    )}
+                                />
+                            </LocalizationProvider>
+                        </Box>
+                        
+                        <Box className="time-field">
+                            <Typography className="field-label">Heure de départ</Typography>
+                            <LocalizationProvider dateAdapter={AdapterDayjs}>
+                                <TimePicker 
+                                    className='input time-picker'
+                                    value={time}
+                                    onChange={(newValue) => setTime(newValue)}
+                                    ampm={false}
+                                    renderInput={(params) => (
+                                        <TextField 
+                                            {...params} 
+                                            fullWidth 
+                                            variant="outlined"
+                                            InputProps={{
+                                                ...params.InputProps,
+                                                sx: { border: 'none', outline: 'none' },
+                                                disableUnderline: true
+                                            }}
+                                        />
+                                    )}
+                                />
+                            </LocalizationProvider>
+                        </Box>
                     </Grid2>
+                
+                    {/* Départ & Arrivée */}
+                    <Grid2 className="location-container">
+                        {/* Départ */}
+                        <Grid2 className="location-field">
+                            <div 
+                                className="location-input-wrapper"
+                                onClick={handleDepartureClick}
+                            >
+                                <Typography className="field-label">Départ</Typography>
+                                <PlaceIcon className='location-icon' />
+                                <TextField 
+                                    className="location-input" 
+                                    variant="standard" 
+                                    fullWidth
+                                    value={departure}
+                                    placeholder="Choisissez votre lieu de départ"
+                                    onChange={(e) => setDeparture(e.target.value)}
+                                    InputProps={{
+                                        disableUnderline: true,
+                                        readOnly: true
+                                    }}
+                                />
+                            </div>
+                        </Grid2>
 
-                    {/* Bouton d'échange */}
-                    <IconButton className='swap-icon' onClick={swapLocations}>
-                        <SwapVertIcon />
-                    </IconButton>
+                        {/* Bouton d'échange */}
+                        <IconButton className='swap-icon' onClick={swapLocations}>
+                            <SwapVertIcon />
+                        </IconButton>
 
-                    {/* Arrivée */}
-                    <Grid2 className="location-field">
-                        <Typography className="field-label">Arrivée</Typography>
-                        <div 
-                            className="location-input-wrapper"
-                            onClick={handleArrivalClick}
-                        >
-                            <FmdGoodIcon className='location-icon' />
-                            <TextField 
-                                className="location-input" 
-                                variant="standard" 
-                                fullWidth 
-                                value={arrival}
-                                placeholder="Choisissez votre lieu d'arrivée"
-                                onChange={(e) => setArrival(e.target.value)}
-                                InputProps={{
-                                    disableUnderline: true,
-                                    readOnly: true
-                                }}
-                            />
-                        </div>
+                        {/* Arrivée */}
+                        <Grid2 className="location-field">
+                            <div 
+                                className="location-input-wrapper"
+                                onClick={handleArrivalClick}
+                            >                        
+                                <Typography className="field-label">Arrivée</Typography>
+                                <FmdGoodIcon className='location-icon' />
+                                <TextField 
+                                    className="location-input" 
+                                    variant="standard" 
+                                    fullWidth 
+                                    value={arrival}
+                                    placeholder="Choisissez votre lieu d'arrivée"
+                                    onChange={(e) => setArrival(e.target.value)}
+                                    InputProps={{
+                                        disableUnderline: true,
+                                        readOnly: true
+                                    }}
+                                />
+                            </div>
+                        </Grid2>
                     </Grid2>
+                    {arrival && (
+                        <Button 
+                            variant="contained" 
+                            className='btn-suivant'
+                            onClick={handleClickSuivant}
+                        >
+                            Suivant
+                        </Button>
+                    )}
                 </Grid2>
-                {arrival && (
-                    <Button 
-                        variant="contained" 
-                        className='btn-suivant'
-                        onClick={handleClickSuivant}
-                    >
-                        Suivant
-                    </Button>
-                )}
-            </Grid2>
-        </motion.div>
+            </motion.div>
+        </Router>
     );
 }

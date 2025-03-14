@@ -3,6 +3,7 @@ import ServiceWorkerRegister from "./components/ServiceWorkerRegister"; // Impor
 import InstallPWA from "./components/InstallPWA";
 // import BarNavigation from "./components/BarNavigation";
 import { AnimatePresence } from "framer-motion";
+import { RideProvider } from "./components/RideContextSave";
 
 export const metadata = {
   title: "Decathlon Walk Up",
@@ -19,9 +20,11 @@ export default function RootLayout({ children }) {
   return (
     <html lang="fr">
       <body>
-      <AnimatePresence mode="wait">
-        {children}
-      </ AnimatePresence>
+      <RideProvider>
+        <AnimatePresence mode="wait">
+          {children}
+        </ AnimatePresence>
+      </ RideProvider>
       <ServiceWorkerRegister /> {/* Ajout du composant */}
       <InstallPWA />
       {/* <BarNavigation /> */}

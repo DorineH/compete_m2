@@ -1,13 +1,14 @@
+import dayjs from 'dayjs';
 import React from 'react';
 
-const DisplayDataComponent = ({ date, time, departure, arrival, objectif, walkPreference, kids, animals, rythme, supp }) => {
+const DisplayDataComponent = ({ date, time, departure, arrival }) => {
     return (
         <div>
             <h2>Résumé des données</h2>
-            <p>Date: {date.format('DD/MM/YYYY')}</p>
-            <p>Heure: {time.format('HH:mm')}</p>
-            <p>Départ: {departure}</p>
-            <p>Arrivée: {arrival}</p>
+            <p>Date: {dayjs(date).format('DD/MM/YYYY')}</p>
+            <p>Time: {dayjs(time).format('HH:mm')}</p>
+            <p>Departure: {departure}</p>
+            <p>Arrival: {arrival}</p>
         </div>
     );
 };

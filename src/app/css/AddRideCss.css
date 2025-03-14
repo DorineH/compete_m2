@@ -1,126 +1,127 @@
 .container {
     background-color: #f5f2fc;
-    padding: 16px;
+    padding: 10px;
     width: 100%;
     max-width: 400px;
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-  }
+}
   
-  .header {
+.header-add-ride {
     display: flex;
     align-items: center;
     width: 100%;
     max-width: 400px;
     padding: 16px;
     margin-bottom: 8px;
-  }
+}
   
-  .back-arrow {
+.back-arrow {
     color: #333;
     margin-right: 16px;
-  }
+}
   
-  .progress-container {
+.progress-container {
     display: flex;
     align-items: center;
     flex: 1;
-  }
+}
   
-  .progress-bar {
+.progress-bar {
     flex: 1;
     height: 8px;
     background-color: #e0e0e0;
     border-radius: 4px;
     margin-right: 16px;
     overflow: hidden;
-  }
+}
   
-  .progress-filled {
+.progress-filled {
     width: 33.3%;
     height: 100%;
     background-color: #3643BA;
     border-radius: 4px;
-  }
+}
   
-  .progress-text {
+.progress-text {
     font-size: 14px;
     color: #555;
-  }
+}
   
-  .title {
+/* .title {
     font-size: 22px;
     font-weight: 600;
     margin-bottom: 24px;
     margin-left: 8px;
-    color: #333;
-  }
+    color: #141843;
+} */
   
-  .date-time-container {
+.date-time-container {
     display: flex;
     justify-content: space-between;
     margin-bottom: 24px;
     width: 100%;
-  }
+}
   
-  .date-field, .time-field {
+.date-field, .time-field {
     width: 48%;
     display: flex;
     flex-direction: column;
-    border: none !important
-  }
+    border: none !important;
+}
   
-  .field-label {
+.field-label {
     font-size: 14px;
     font-weight: 500;
-    margin-bottom: 8px;
+    margin-right: 8px;
     color: #333;
-  }
+}
   
-  .date-picker, .time-picker {
+.date-picker, .time-picker {
     background-color: white;
     border-radius: 8px;
     padding: 12px;
     box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
-    border: none !important
-  }
+    border: none !important;
+}
   
-  .location-container {
+.location-container {
     display: flex;
     flex-direction: column;
     gap: 20px;
     position: relative;
     width: 100%;
-  }
+}
   
-  .location-field {
+.location-field {
     display: flex;
     flex-direction: column;
     width: 100%;
-  }
+}
   
-  .location-input-wrapper {
+.location-input-wrapper {
     display: flex;
     align-items: center;
     background: white;
     border-radius: 8px;
     padding: 12px;
     box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
-  }
+    align-items: center;
+}
   
-  .location-icon {
+.location-icon {
     margin-right: 12px;
     color: #3643BA;
     font-size: 20px;
-  }
+}
   
-  .location-input {
+.location-input {
     flex: 1;
     font-size: 14px;
-  }
+}
   
-  .swap-icon {
+.swap-icon {
     position: absolute !important;
     right: 12px;
     background: #5561CE !important;
@@ -130,29 +131,29 @@
     cursor: pointer;
     box-shadow: 0 2px 5px rgba(95, 69, 233, 0.4);
     z-index: 10;
-    top: 56%;
+    top: 50%;
     transform: translateY(-50%);
     height: 36px;
     width: 36px;
-  }
+}
   
-  /* Suppression des bordures par défaut des inputs MUI */
-  .MuiInput-underline:before,
-  .MuiInput-underline:after {
+/* Suppression des bordures par défaut des inputs MUI */
+.MuiInput-underline:before,
+.MuiInput-underline:after {
     display: none;
-  }
+}
   
-  .MuiInputBase-input {
+.MuiInputBase-input {
     padding: 8px 0 !important;
-  }
+}
   
-  /* Style pour les placeholders */
-  .MuiInputBase-input::placeholder {
+/* Style pour les placeholders */
+.MuiInputBase-input::placeholder {
     color: #666;
     opacity: 0.7;
-  }
+}
 
-  .btn-suivant {
+.btn-suivant {
     background-color: #3643BA; 
     color: white;
     width: 100%;
@@ -161,62 +162,72 @@
     font-size: 16px;
     font-weight: bold;
     border-radius: 8px;
-  }
+}
 
-.container {
-  padding: 20px;
-  background-color: #EAE8F2;
-  border-radius: 10px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+.container-explain-more {
+    background-color: #f5f2fc;
+    padding: 10px;
+    width: 100%;
+    max-width: 400px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
 }
 
 .title {
-  margin-bottom: 20px;
-  font-weight: bold;
-  color: #333;
+    margin-bottom: 20px;
+    font-weight: bold;
+    color: #141843;
 }
 
 .form-group {
-    margin-bottom: 20px;
     display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    align-items: center;
-    background: white;
+    flex-direction: column;
+    /* background: white; */
     border-radius: 8px;
-    padding: 9px;
+    padding: 10px;
     width: 100%;
-    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    /* box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1); */
 }
 
 .input-field {
-  margin-top: 10px;
-  background-color: #fff;
-  border-radius: 5px;
-  width: 360px;
+    margin-top: 5px;
+    background-color: #fff;
+    border-radius: 5px;
+    width: 100%;
+    border: none;
 }
 
 .chip-container {
     display: flex;
     flex-wrap: wrap;
     gap: 10px;
-    margin-top: 5px;
+    margin-top: 10px;
+    width: 100%;
+    justify-content: space-between;
 }
 
 .chip {
+    flex: 1 1 calc(50% - 10px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
     background-color: #C0C4ED;
     border-radius: 3px;
+    padding: 5px 10px;
+    font-size: 14px;
 }
 
 .add-button {
-    /* margin-top: 10px; */
     background-color: #3643BA;
     color: #fff;
-    margin: 0;
-    padding: 0;
+    margin-top: 10px;
+    padding: 10px;
+    border-radius: 5px;
     display: flex;
     align-items: center;
     justify-content: center;
+    cursor: pointer;
 }
 
 .submit-button {
@@ -225,4 +236,8 @@
     color: #fff;
     font-weight: bold;
     border-radius: 5px;
+    padding: 10px;
+    width: 100%;
+    text-align: center;
+    cursor: pointer;
 }
