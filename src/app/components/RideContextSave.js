@@ -61,10 +61,14 @@ export const RideProvider = ({ children }) => {
 
     useEffect(() => {
         const saveData = async () => {
-            try {
-                await saveRideInfo(rideInfo);
-            } catch (error) {
-                console.error(error);
+            const isNotEmpty = Object.values(rideInfo).some(value => value !== '' && (!Array.isArray(value) || value.length > 0));
+
+            if (isNotEmpty) {
+                try {
+                    await saveRideInfo(rideInfo);
+                } catch (error) {
+                    console.error(error);
+                }
             }
         };
         saveData();
