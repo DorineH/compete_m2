@@ -1,4 +1,6 @@
 # compete_m2
+Lien vers la version deployer: https://decathlon-walk-up.vercel.app/ (qui à un leger problème)
+
 This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
 ## Getting Started
